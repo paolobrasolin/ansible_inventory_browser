@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<!-- Copyright (c) 2020, Paolo Brasolin <paolo.brasolin@gmail.com> -->
+
+<html>
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+
+<script id="data" type="application/json">
+  {"nodes":[],"edges":[]}
+</script>
+
+
+<style>
+#mynetwork {
+  width: 60vw;
+  height: 95vh;
+  position: absolute;
+  top: 5vh;
+  left: 0;
+}
+#props {
+  left: 60vw;
+  width: 40vw;
+  height: 95vh;
+  position: absolute;
+  top: 5vh;
+  background-color: antiquewhite;
+  overflow: scroll;
+}
+</style>
+
+
+<body>
+<div id="mynetwork"></div>
+<pre id="props"></pre>
+<input id="filter" value="">
+<script type="text/javascript" src="index.js"></script>
+<script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: ""
+    }], "*")
+  }
+
+  // always overwrite window.name, in case users try to set it manually
+  window.name = "result"
+</script>
+</body>
+</html>
